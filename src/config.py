@@ -25,12 +25,14 @@ if os.path.isfile(dev_env_path):
 class Config(BaseSettings):
     debug: bool = True  # Debug mode flag
     app_title: str = 'magic_link_authentication'  # Application title
+    secret_key: str = ""
     redis_host: str = ""  # Redis server host
     redis_port: int = 0  # Redis server port
     redis_db: int = 0  # Redis database index
     sqlite_file: str = ""  # SQLite database file path
     mailgunApiKey: str = ""  # Mailgun API key
     mailboxlayerApiKey: str = ""  # Mailboxlayer API key
+
 
 
 env_config = Config()  # Create an instance of the Config class for environment configuration

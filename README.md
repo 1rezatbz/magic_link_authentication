@@ -1,7 +1,5 @@
 # Magic Link Authentication
 
-![Project Logo](path/to/logo.png)
-
 Magic Link Authentication is a secure and user-friendly authentication system that replaces traditional username-password combinations with magic links. This project provides a modern and hassle-free approach to user authentication, enhancing security while improving the user experience.
 
 ## Features
@@ -21,23 +19,33 @@ Magic Link Authentication is a secure and user-friendly authentication system th
 - HTTPX: HTTP client for sending emails
 - SQLite: Lightweight and serverless database engine for data storage
 
+## Prerequisites
+
+- Python 3.9
+- Pipenv
+
 ## Installation
 
-1. Clone the repository:
-2. Install the required dependencies:
-3. Configure the environment variables in the `.env` file:
-4. Access the API at `http://localhost:8000`
+1. Clone this repository: `git clone https://github.com/1rezatbz/magic_link_authentication.git`
+2. Install dependencies: `pipenv install`
+3. Start the server: `pipenv run uvicorn main:app --reload`
+4. Install the requirements: `pip install -r requirements.txt`
 
-## Usage
+## API Endpoints
 
-1. Register a new user by sending a POST request to `/register` endpoint with the following JSON payload:
-2
-```json
-{
-  "email": "user@example.com"
-}
+### User Registration
 
+- **Endpoint:** `/register`
+- **Method:** POST
+- **Description:** Registers a new user and sends a verification email with a magic link.
 
+### User login I
+- **Endpoint:** `/login`
+- **Method:** POST
+- **Description:** Create Token and send login like the user eamil
 
+### User login II
 
-
+- **Endpoint:** `/login`
+- **Method:** GET
+- **Description:** Validates the magic link token and logs in the user.

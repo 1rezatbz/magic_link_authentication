@@ -98,7 +98,7 @@ def send_email(email: str, token: str, subject: str = "Access Link"):
 
 
 if __name__ == '__main__':
-    # is_valid_email("rezartabriz@yahoo.com")
-    register_user("rezartabriz@yahoo.com")
+    is_valid_email("rezartabriz@yahoo.com")
+    # register_user("rezartabriz@yahoo.com")
     # check_user_exists("rezartabriz@yahoo.com")
     # create_users_table()

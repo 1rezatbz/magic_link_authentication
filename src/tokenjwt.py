@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta
 from conections import RedisConnection
+from config import env_config
 import jwt
 
 
 class TokenStorage:
-    secret_key = "your_secret_key"
+    secret_key = env_config.secret_key
     token_expire_minutes = 10
     _connection = RedisConnection.get_connection()
 
@@ -67,8 +68,8 @@ class TokenStorage:
 
 if __name__ == '__main__':
     t = TokenStorage()
-    token = t.generate_token("reza@gmail.com")
+    # token = t.generate_token("reza@gmail.com")
     # t.store_token("reza@gmail.com", token)
-    print(t.token_to_email(token))
-    RedisConnection.get_value("reza@gmail.com")
-    print(str(token))
+    # print(t.token_to_email(token))
+    # RedisConnection.get_value("reza@gmail.com")
+    # print(str(token))

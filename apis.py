@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
-from model import UserRegistration, User
-from crud import create_users_table, is_valid_email, register_user, check_user_exists, send_email
-from tokenjwt import TokenStorage
+from src.crud import create_users_table, is_valid_email, register_user, check_user_exists, send_email
+from src.tokenjwt import TokenStorage
+from src.schemas import UserRegistration, User
 
 app = FastAPI()
 
@@ -13,6 +13,14 @@ def startup_event():
     Creates the users table if it doesn't exist.
     """
     create_users_table()
+
+
+@app.get("/")
+def home():
+    """
+    Endpoint for home
+    """
+    return {"message": "Wellcome to zally"}
 
 
 @app.post("/register")
