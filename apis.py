@@ -1,9 +1,22 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends, security
 from src.crud import create_users_table, is_valid_email, register_user, check_user_exists, send_email
 from src.tokenjwt import TokenStorage
 from src.schemas import UserRegistration, User
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 app = FastAPI()
+
+
+# Authentication middleware
+def authenticate_user(token: str):
+    # Implement your authentication logic here
+    if not token:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    # Perform token validation here
+    # Example: Check token against a token storage or authentication provider
+    if not TokenStorage.validate_token(token):
+        raise HTTPException(status_code=401, detail="Invalid token")
+    return token
 
 
 @app.on_event("startup")
@@ -21,6 +34,11 @@ def home():
     Endpoint for home
     """
     return {"message": "Wellcome to zally"}
+
+
+@app.get("/home")
+def homepage(token: str = Depends(authenticate_user)):
+    return {"message": "Welcome to the homepage"}
 
 
 @app.post("/register")
