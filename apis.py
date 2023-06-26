@@ -62,8 +62,8 @@ def login(token: str):
     Endpoint for login using a token.
     Validates the token and performs the login operation.
     """
-    if not token:
-        raise HTTPException(status_code=400, detail="Token not provided")
+    if not token or len(token) < 5:
+        raise HTTPException(status_code=404, detail="Token not provided")
     elif TokenStorage.validate_token(token):
         return {"message": "Login successful"}
     else:

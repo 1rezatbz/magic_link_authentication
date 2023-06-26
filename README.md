@@ -30,6 +30,7 @@ Magic Link Authentication is a secure and user-friendly authentication system th
 2. Install dependencies: `pipenv install`
 3. Start the server: `pipenv run uvicorn main:app --reload`
 4. Install the requirements: `pip install -r requirements.txt`
+5. install Redis database or change the host and the port to the existing redis connection.
 
 ## API Endpoints
 
