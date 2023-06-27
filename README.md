@@ -31,7 +31,7 @@ Magic Link Authentication is a secure and user-friendly authentication system th
 3. Install the requirements: `pip install -r requirements.txt`
 4. Install Redis database or change the host and the port to the existing redis connection.
 5. Mark Src Directory as source root
-5. Run project with using run.py script
+6. Run project with using run.py script
 
 ## API Endpoints
 
