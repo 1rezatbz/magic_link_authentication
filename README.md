@@ -29,9 +29,9 @@ Magic Link Authentication is a secure and user-friendly authentication system th
 1. Clone this repository: `git clone https://github.com/1rezatbz/magic_link_authentication.git`
 2. Build python environment(or set you python interpreter) 
 3. Install the requirements: `pip install -r requirements.txt`
-4. install Redis database or change the host and the port to the existing redis connection.
+4. Install Redis database or change the host and the port to the existing redis connection.
 5. Mark Src Directory as source root
-5. run project with using run.py script
+5. Run project with using run.py script
 
 ## API Endpoints
 
