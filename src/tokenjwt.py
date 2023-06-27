@@ -6,7 +6,7 @@ import jwt
 
 class TokenStorage:
     secret_key = env_config.secret_key
-    token_expire_minutes = 10
+    token_expire_minutes = 1
     _connection = RedisConnection.get_connection()
 
     @staticmethod
@@ -52,15 +52,13 @@ class TokenStorage:
         :param token: JWT token to be validated
         :return: True if the token is valid, False otherwise
         """
-        email = TokenStorage.token_to_email(token)
-        stored_token = RedisConnection.get_value(email)
-        if stored_token is None or stored_token.decode() != token:
-            return False
         try:
-            payload = jwt.decode(token, TokenStorage.secret_key, algorithms=["HS256"])
+            email = TokenStorage.token_to_email(token)
+            stored_token = RedisConnection.get_value(email)
+            if stored_token and not stored_token.decode() != token:
+                payload = jwt.decode(token, TokenStorage.secret_key, algorithms=["HS256"])
             return True
         except jwt.ExpiredSignatureError:
-            RedisConnection.del_value(email)
             return False
         except jwt.InvalidTokenError:
             return False
@@ -68,6 +66,9 @@ class TokenStorage:
 
 if __name__ == '__main__':
     t = TokenStorage()
+    tt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc4NjA1MzQsImlhdCI6MTY4Nzg2MDQ3NCwic3ViIjoibG9naW4iLCJlbWFpbCI6InRlc3RleEBleGFtcGxlLmNvbSJ9.-aAIBrSBHUMaE6Rcvw6H8GVmUOwK5P8RDEtUvlkdK9Q"
+    print(t.validate_token(tt))
+
     # token = t.generate_token("reza@gmail.com")
     # t.store_token("reza@gmail.com", token)
     # print(t.token_to_email(token))
